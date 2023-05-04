@@ -48,4 +48,12 @@ public class SumController {
         return false;
     }
 
+    public void printSums(){
+        System.out.println("Naglowek: " + this.header);
+        System.out.println("Stopien kompresji: " + this.compressionRatio);
+        System.out.println("Reszta1: " + this.rest1);
+        System.out.println("Reszta2: " + this.rest2);
+        System.out.println("Suma kontrolna: " + this.sumControll);
+    }
+
 }

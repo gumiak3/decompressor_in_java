@@ -12,6 +12,9 @@ public class Main {
             System.exit(1);
         }
         sumController.getValuesFromFile(data);
-
+        sumController.printSums();
+        Dictionary dictionary = new Dictionary();
+        dictionary.getDictionary(data, sumController.compressionRatio);
+        dictionary.printExtraInfo();
     }
 }
