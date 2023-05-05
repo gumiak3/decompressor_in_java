@@ -1,8 +1,9 @@
 package decompressor;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
-public class Dictionary {
+public class Dictionary extends DataManagement {
     int dictionarySize;
     ArrayList<Word> dictionary;
 
@@ -10,24 +11,11 @@ public class Dictionary {
         dictionarySize = 0;
         dictionary = new ArrayList<>();
     }
-    private String completeWithZeros(String binary){
-        int amountToComplete = 8 - binary.length();
-        String temp = "";
-        for(int i=0;i<amountToComplete;i++){
-            temp+='0';
-        }
-        binary = temp + binary;
-        return binary;
-    }
 
-    private int byteToInt(byte a){
-        return (int) (a & 0xFF);
-    }
     private int getDictionarySize(byte a, byte b){
         String temp1 = Integer.toBinaryString((char) byteToInt(a) );
         String temp2 = Integer.toBinaryString((char) byteToInt(b) );
-        String sizeInBinary = completeWithZeros(temp1) + "" + completeWithZeros(temp2);// do naprawy!
-        System.out.println(sizeInBinary);
+        String sizeInBinary = completeWithZeros(temp1) + "" + completeWithZeros(temp2);
         return Integer.parseInt(sizeInBinary,2);
     }
     public void printDictionary(){
@@ -39,11 +27,7 @@ public class Dictionary {
         printDictionary();
         System.out.println("Dictionary Size: " + this.dictionarySize);
     }
-    private String toBinary(byte a)
-    {
-        int b = byteToInt(a);
-        return completeWithZeros(Integer.toBinaryString((char) b));
-    }
+
     public void getDictionary(DataReader data, int compressionRatio) {
         this.dictionarySize = getDictionarySize(data.getData().get(0).byteValue(), data.getData().get(1).byteValue());
         data.removeItems(0, 2);
@@ -66,7 +50,6 @@ public class Dictionary {
                 switch (whichData % 3) {
                     case 0: {
                         dictionary.add(new Word((short) Integer.parseInt(buffor, 2)));
-                        System.out.println(dictionary.get(0).bitRepresentation);
                         codeLength = 8;
                         break;
                     }

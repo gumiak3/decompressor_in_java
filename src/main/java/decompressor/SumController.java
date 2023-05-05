@@ -7,9 +7,9 @@ public class SumController {
     String header;
     int compressionRatio;
 
-    byte rest1;
-    byte rest2;
-    int sumControll;
+    int rest1;
+    int rest2;
+    int sumControl;
     SumController(DataReader data){
         header = "#LP#";
     }
@@ -25,10 +25,10 @@ public class SumController {
     public void getValuesFromFile(DataReader data){
         getCompressionRatio(data);
         getRests(data);
-        getSumControll(data);
+        getSumControl(data);
     }
-    private void getSumControll(DataReader data){
-        this.sumControll = data.getData().get(0);
+    private void getSumControl(DataReader data){
+        this.sumControl = data.getData().get(0);
         data.getData().remove(0);
     }
     private void getRests(DataReader data){
@@ -53,7 +53,7 @@ public class SumController {
         System.out.println("Stopien kompresji: " + this.compressionRatio);
         System.out.println("Reszta1: " + this.rest1);
         System.out.println("Reszta2: " + this.rest2);
-        System.out.println("Suma kontrolna: " + this.sumControll);
+        System.out.println("Suma kontrolna: " + this.sumControl);
     }
 
 }

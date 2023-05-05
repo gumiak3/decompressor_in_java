@@ -1,6 +1,8 @@
 package decompressor;
 
-public class Main {
+import javax.xml.crypto.Data;
+
+public class Main extends DataManagement {
     public static void main(String[] args){
         DataReader data = new DataReader();
         if(!data.readData("test.txt")){
@@ -15,6 +17,12 @@ public class Main {
         sumController.printSums();
         Dictionary dictionary = new Dictionary();
         dictionary.getDictionary(data, sumController.compressionRatio);
-        dictionary.printExtraInfo();
+        CompressedData compressedData = new CompressedData();
+        compressedData.setRest2Value(sumController.rest2, data.getData());
+        String temp = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
+        if(!checkCorrectnessOfFile(sumController.sumControl,data.getData(),compressedData.rest2Value)){
+            System.out.println("File is corrupted!");
+            System.exit(1);
+        }
     }
 }
