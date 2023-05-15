@@ -5,7 +5,7 @@ import javax.xml.crypto.Data;
 public class Main{
     public static void main(String[] args){
         DataReader data = new DataReader();
-        if(!data.readData("test.txt")){
+        if(!data.readData("testFiles/test.txt")){
             System.exit(1);
         }
         SumController sumController = new SumController(data);
@@ -24,6 +24,5 @@ public class Main{
             System.out.println("File is corrupted!");
             System.exit(1);
         }
-
     }
 }
