@@ -2,7 +2,7 @@ package decompressor;
 
 import javax.xml.crypto.Data;
 
-public class Main extends DataManagement {
+public class Main{
     public static void main(String[] args){
         DataReader data = new DataReader();
         if(!data.readData("test.txt")){
@@ -19,10 +19,11 @@ public class Main extends DataManagement {
         dictionary.getDictionary(data, sumController.compressionRatio);
         CompressedData compressedData = new CompressedData();
         compressedData.setRest2Value(sumController.rest2, data.getData());
-        String temp = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
-        if(!checkCorrectnessOfFile(sumController.sumControl,data.getData(),compressedData.rest2Value)){
+        String dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
+        if(!FileValidator.checkCorrectnessOfFile(sumController.sumControl,data.getData(),compressedData.rest2Value)){
             System.out.println("File is corrupted!");
             System.exit(1);
         }
+
     }
 }
