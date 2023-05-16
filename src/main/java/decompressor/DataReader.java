@@ -3,9 +3,10 @@ package decompressor;
 import java.io.*;
 import java.util.ArrayList;
 
-public class DataReader extends DataManagement{
+public class DataReader extends DataManagement implements iDataReader{
 
-    DataReader(){
+    DataReader()
+    {
         data = new ArrayList<>();
     }
 
@@ -19,6 +20,7 @@ public class DataReader extends DataManagement{
         }
     }
 
+    @Override
     public boolean readData(String fileName){
         InputStream file = openFile(fileName);
         if(file == null){
@@ -37,4 +39,5 @@ public class DataReader extends DataManagement{
         }
         return true;
     }
+
 }

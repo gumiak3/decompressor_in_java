@@ -18,8 +18,6 @@ public abstract class DataManagement {
             System.out.print((char) a);
         }
     }
-
-
     public String toBinary(byte a)
     {
         int b = byteToInt(a);
