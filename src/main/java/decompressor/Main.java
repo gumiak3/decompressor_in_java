@@ -1,6 +1,7 @@
 package decompressor;
 
 import javax.xml.crypto.Data;
+import java.io.IOException;
 
 public class Main{
     public static void main(String[] args){
@@ -23,6 +24,13 @@ public class Main{
         if(!FileValidator.checkCorrectnessOfFile(sumController.sumControl,data.getData(),compressedData.rest2Value)){
             System.out.println("File is corrupted!");
             System.exit(1);
+        }
+        try {
+            Decompressor decompressor = new Decompressor(dictionary);
+            decompressor.decompress(dataToDecompress);
+            decompressor.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
