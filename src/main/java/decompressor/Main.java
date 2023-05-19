@@ -18,6 +18,10 @@ public class Main{
         sumController.printSums();
         Dictionary dictionary = new Dictionary();
         dictionary.getDictionary(data, sumController.compressionRatio);
+        // Create and print the Huffman tree
+        HuffmanTree huffmanTree = new HuffmanTree(dictionary);
+        huffmanTree.printTree();
+        huffmanTree.printTreeStructure();
         CompressedData compressedData = new CompressedData();
         compressedData.setRest2Value(sumController.rest2, data.getData());
         String dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
