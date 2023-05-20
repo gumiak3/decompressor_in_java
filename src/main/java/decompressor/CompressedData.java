@@ -28,7 +28,8 @@ public class CompressedData extends DataManagement {
         String output = "";
         int bitsToRead = this.size;
         int dataIndex = 0;
-        while(dataIndex<data.size()){
+        System.out.println(data.size());
+        while(dataIndex < (data.size() - 40000)){
             String temp = toBinary(data.get(dataIndex++).byteValue());
             int tempIndex = 0;
             while(bitsToRead > 0 && tempIndex < 8){

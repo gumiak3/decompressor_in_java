@@ -18,7 +18,11 @@ public class SumController {
     private String getHeader(ArrayList<Byte> data){
         String newHeader = "";
         for(int i=0;i<4;i++){
-            newHeader+=(char) data.get(i).byteValue();
+            if(i < data.size()){
+                newHeader+=(char) data.get(i).byteValue();
+            }else{
+                return newHeader;
+            }
         }
         return newHeader;
     }

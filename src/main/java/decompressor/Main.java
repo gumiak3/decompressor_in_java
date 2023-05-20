@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Main{
     public static void main(String[] args){
         DataReader data = new DataReader();
-        if(!data.readData("testFiles/test.txt")){
+        if(!data.readData("testFiles/pan_tadeusz_compressed.txt")){
             System.exit(1);
         }
         SumController sumController = new SumController(data);
@@ -24,11 +24,12 @@ public class Main{
         huffmanTree.printTreeStructure();
         CompressedData compressedData = new CompressedData();
         compressedData.setRest2Value(sumController.rest2, data.getData());
-        String dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
         if(!FileValidator.checkCorrectnessOfFile(sumController.sumControl,data.getData(),compressedData.rest2Value)){
             System.out.println("File is corrupted!");
             System.exit(1);
         }
+        String dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
+        System.out.println(dataToDecompress);
         try {
             Decompressor decompressor = new Decompressor(dictionary);
             decompressor.decompress(dataToDecompress);
