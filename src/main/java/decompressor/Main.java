@@ -1,6 +1,7 @@
 package decompressor;
 
 import javax.xml.crypto.Data;
+import java.io.File;
 import java.io.IOException;
 
 public class Main{
@@ -15,18 +16,16 @@ public class Main{
             System.exit(1);
         }
         sumController.getValuesFromFile(data);
-        sumController.printSums();
         Dictionary dictionary = new Dictionary();
         dictionary.getDictionary(data, sumController.compressionRatio);
-        // Create and print the Huffman tree
+        if(!FileValidator.checkCorrectnessOfDictionary()){
+            FileValidator.printCorruptionInfo();
+        }
         HuffmanTree huffmanTree = new HuffmanTree(dictionary);
-        huffmanTree.printTree();
-        huffmanTree.printTreeStructure();
         CompressedData compressedData = new CompressedData();
         compressedData.setRest2Value(sumController.rest2, data.getData());
         if(!FileValidator.checkCorrectnessOfFile(sumController.sumControl,data.getData(),compressedData.rest2Value)){
-            System.out.println("File is corrupted!");
-            System.exit(1);
+            FileValidator.printCorruptionInfo();
         }
         char[] dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
         try {

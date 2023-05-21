@@ -16,4 +16,11 @@ public class FileValidator {
         }
         return false;
     }
+    public static boolean checkCorrectnessOfDictionary(){
+        return !Dictionary.corrupted;
+    }
+    public static void printCorruptionInfo(){
+        System.out.println("File is corrupted!");
+        System.exit(1);
+    }
 }

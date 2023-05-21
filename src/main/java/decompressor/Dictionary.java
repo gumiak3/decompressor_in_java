@@ -6,10 +6,11 @@ import java.util.ArrayList;
 public class Dictionary extends DataManagement {
     int dictionarySize;
     ArrayList<Word> dictionary;
-
+    public static boolean corrupted;
     Dictionary(){
         dictionarySize = 0;
         dictionary = new ArrayList<>();
+        corrupted = false;
     }
 
     private int getDictionarySize(byte a, byte b){
@@ -69,9 +70,14 @@ public class Dictionary extends DataManagement {
                 codeIndex = 0;
             }
             if (tempIndex == 8 && i < this.dictionarySize){
-                temp = toBinary(dataArray.get(dataIndex++).byteValue());
-                tempIndex = 0;
-                amountToRemove++;
+                if(dataIndex == dataArray.size()){
+                    i = this.dictionarySize;
+                    corrupted = true;
+                }else{
+                    temp = toBinary(dataArray.get(dataIndex++).byteValue());
+                    tempIndex = 0;
+                    amountToRemove++;
+                }
             }
         }
         if(dictionarySize > 0){
