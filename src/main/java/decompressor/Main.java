@@ -28,8 +28,7 @@ public class Main{
             System.out.println("File is corrupted!");
             System.exit(1);
         }
-        String dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
-        System.out.println(dataToDecompress);
+        char[] dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
         try {
             Decompressor decompressor = new Decompressor(dictionary);
             decompressor.decompress(dataToDecompress);

@@ -23,18 +23,23 @@ public class CompressedData extends DataManagement {
             this.size -= (8-rest1);
         }
     }
-    public String getCompressedData(ArrayList<Byte> data, int rest1, int rest2){
+    public char[] getCompressedData(ArrayList<Byte> data, int rest1, int rest2){
         setNumberBitsToRead(data.size(), rest1, rest2);
-        String output = "";
         int bitsToRead = this.size;
         int dataIndex = 0;
-        System.out.println(data.size());
-        while(dataIndex < (data.size() - 40000)){
+        int outputIndex = 0;
+        char[] output = new char[bitsToRead];
+        while(dataIndex < data.size() && bitsToRead >=8){
             String temp = toBinary(data.get(dataIndex++).byteValue());
-            int tempIndex = 0;
-            while(bitsToRead > 0 && tempIndex < 8){
-                output+= temp.charAt(tempIndex++);
-                bitsToRead--;
+            for(int i=0;i<8;i++){
+                output[outputIndex++] = temp.charAt(i);
+            }
+            bitsToRead-=8;
+        }
+        if(bitsToRead > 0) {
+            String temp = toBinary(data.get(dataIndex).byteValue());
+            for(int i=0;i<bitsToRead;i++){
+                output[outputIndex++]+= temp.charAt(i);
             }
         }
         return output;
