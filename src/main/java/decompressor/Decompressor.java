@@ -10,12 +10,12 @@ public class Decompressor {
     private BufferedOutputStream writer;
     private byte buffor = 0;
     private int bufforIndex = 0;
-    Decompressor(Dictionary dictionary) throws IOException {
+    Decompressor(Dictionary dictionary, String fileName) throws IOException {
         // Create a map for quick lookup of the Huffman code to its bit representation
         for (Word word : dictionary.dictionary) {
             huffmanMap.put(word.code, word.bitRepresentation);
         }
-        writer = new BufferedOutputStream(new FileOutputStream("wyniki.jpeg"));
+        writer = new BufferedOutputStream(new FileOutputStream(fileName));
     }
     private void write8Bits(short toWrite) throws IOException {
         writer.write((byte) toWrite);

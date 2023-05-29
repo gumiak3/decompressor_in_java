@@ -6,8 +6,16 @@ import java.io.IOException;
 
 public class Main{
     public static void main(String[] args){
+        if(args.length < 2){
+            System.out.println("This is file decompressor\n" +
+                    "<java -jar [jar_path] infile outfile\n");
+            System.exit(0);
+        }
+        String inputFile = args[0];
+        String outputFile = args[1];
+        System.out.println(inputFile);
         DataReader data = new DataReader();
-        if(!data.readData("testFiles/test2_compressed_16.jpeg")){
+        if(!data.readData(inputFile)){
             System.exit(1);
         }
         SumController sumController = new SumController(data);
@@ -30,7 +38,7 @@ public class Main{
         }
         char[] dataToDecompress = compressedData.getCompressedData(data.getData(), sumController.rest1, sumController.rest2);
         try {
-            Decompressor decompressor = new Decompressor(dictionary);
+            Decompressor decompressor = new Decompressor(dictionary, outputFile);
             decompressor.decompress(dataToDecompress, sumController.compressionRatio, sumController.rest2, compressedData.rest2Value);
             decompressor.close();
         } catch (IOException e) {
