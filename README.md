@@ -3,6 +3,6 @@ Decompressor of compressed binary files by compressor which was written before i
 
 # HOW TO COMPILE (using terminal)
     mvn clean package
-    java -jar target\java_decompressor-1.0-SNAPSHOT.jar {infile} {outfile} 
+    java -jar target\decompressor.jar {infile} {outfile} 
 
     
