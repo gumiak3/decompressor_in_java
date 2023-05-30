@@ -19,7 +19,6 @@ public class DataReader extends DataManagement implements iDataReader{
             return null;
         }
     }
-
     @Override
     public boolean readData(String fileName){
         InputStream file = openFile(fileName);

@@ -16,6 +16,14 @@ public class FileValidator {
         }
         return false;
     }
+    public static boolean fileNameValidation(String fileName){
+        for(int i=0;i<fileName.length();i++){
+            if(fileName.charAt(i) == '-'){
+                return false;
+            }
+        }
+        return true;
+    }
     public static boolean checkCorrectnessOfDictionary(){
         return !Dictionary.corrupted;
     }
