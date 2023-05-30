@@ -19,6 +19,7 @@
                             <mainClass>decompressor.Main</mainClass>
                         </manifest>
                     </archive>
+                    <finalName>decompressor</finalName>
                 </configuration>
             </plugin>
         </plugins>
