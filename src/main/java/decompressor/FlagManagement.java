@@ -11,6 +11,7 @@ public class FlagManagement {
     // -t -> print tree structure
     public boolean printTree;
     public boolean printAdditionalInfo;
+    public boolean printDictionary;
     String[] args;
     FlagManagement(String[] args){
         this.args = removeFilesFromArray(args);
@@ -21,7 +22,7 @@ public class FlagManagement {
         System.arraycopy(args,2,newArray,0,args.length - 2);
         return newArray;
     }
-    String[] possibleFlags = {"-help", "-h", "-v", "-t"};
+    String[] possibleFlags = {"-help", "-h", "-v", "-t", "-s"};
     private boolean contains(String e, String[] array){
         for(String arrayElement : array){
             if(e.equals(arrayElement)){
@@ -47,6 +48,8 @@ public class FlagManagement {
                 printAdditionalInfo = true;
             }else if(element.equals("-help") || element.equals("-h")){
                 printHelp();
+            }else if(element.equals("-s")){
+                   printDictionary = true;
             }else{
                 printTree = true;
             }

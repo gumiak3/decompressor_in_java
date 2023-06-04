@@ -37,6 +37,9 @@ public class Main{
         if(flags.printTree){
             huffmanTree.printTreeStructure();
         }
+        if(flags.printDictionary){
+            huffmanTree.printTree();
+        }
         CompressedData compressedData = new CompressedData();
         compressedData.setRest2Value(sumController.rest2, data.getData());
         if(!FileValidator.checkCorrectnessOfFile(sumController.sumControl,data.getData(),compressedData.rest2Value)){
